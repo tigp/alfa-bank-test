@@ -1,4 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import type { RootState } from './index';
 
 type GifsItem = {
   id: string;
@@ -7,25 +9,28 @@ type GifsItem = {
 };
 
 interface gifsState {
-  gifs: GifsItem[];
-}
-
-const initialState: gifsState = {
-  gifs: [],
+  items: GifsItem[];
 };
 
-const gifsSlice = createSlice({
+// Define the initial state using that type
+const initialState: gifsState = {
+  items: [],
+};
+
+export const gifsSlice = createSlice({
   name: 'gifs',
   initialState,
   reducers: {
-    setGifs: (state, { payload }: PayloadAction<GifsItem>) => {
-      console.log(payload);
+    // setGifs: (state, { payload }: PayloadAction<GifsItem>) => {
+    //   console.log('gifsSlice!');
+    // },
+    setGifs: (state) => {
+      console.log('gifsSlice!');
     },
   },
 });
 
 export const { setGifs } = gifsSlice.actions;
-
-export default gifsSlice.reducer;
-
-export const gifsSelector = (state: { gifsStore: gifsState }) => state.gifsStore;
+// Other code such as selectors can use the imported `RootState` type
+export const selectCount = (state: RootState) => state; // ?????
+export default gifsSlice.reducer

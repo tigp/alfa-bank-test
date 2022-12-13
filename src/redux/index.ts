@@ -1,8 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit'
-import gifsSlice from './gifsSlice';
+import { configureStore } from '@reduxjs/toolkit';
+import gifsReducer from './gifsSlice';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    gifsStore: gifsSlice,
+    gifs: gifsReducer,
   },
 });
+
+export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
