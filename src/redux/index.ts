@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import gifsReducer from './gifsSlice';
+import catsReducer from './catsSlice';
 
 const store = configureStore({
   reducer: {
-    gifs: gifsReducer,
+    cats: catsReducer,
   },
 });
 
