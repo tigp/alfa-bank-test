@@ -20,10 +20,9 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "react/jsx-filename-extension": [0],
-        "import/no-unresolved": [
-            2, 
-            { "caseSensitive": false }
-        ]
+        "import/extensions": 0,
+        "import/no-unresolved": 0,
+        "no-console": 0,
+        "react/jsx-filename-extension": [0]
     }
 }

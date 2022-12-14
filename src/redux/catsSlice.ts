@@ -18,15 +18,15 @@ const initialState: CatsState = {
 };
 
 export const catsSlice = createSlice({
-  name: 'gifs',
+  name: 'cats',
   initialState,
   reducers: {
     setCats: (state, { payload }: PayloadAction<object>) => {
-      console.log(payload);
+      state.catsList.push(payload);
     },
   },
 });
 
 export const { setCats } = catsSlice.actions;
-export const selectCount = (state: RootState) => state; // ?????
+export const catsSelector = (state: RootState) => state.cats; // ?????
 export default catsSlice.reducer;
