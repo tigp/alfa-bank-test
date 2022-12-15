@@ -1,3 +1,5 @@
+/* eslint no-param-reassign: "error" */
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from './index';
@@ -30,15 +32,19 @@ export const catsSlice = createSlice({
     getCats: (state, { payload }: PayloadAction<CatItem>) => {
       state.catsList.push(payload);
     },
-    setLikeToCat: (state, { payload }: PayloadAction<string>) => { // payload = catId: string
+    setLikeToCat: (state, { payload }: PayloadAction<string>) => {
       const targetCat = state.catsList.find(({ catId }) => catId === payload);
       if (targetCat) {
         targetCat.isLiked = !targetCat.isLiked;
       }
     },
+    removeCat: (state, { payload }: PayloadAction<string>) => {
+      const filteredCats = state.catsList.filter(({ catId }) => catId !== payload);
+      state.catsList = [...filteredCats];
+    },
   },
 });
 
-export const { getCats, setLikeToCat } = catsSlice.actions;
+export const { getCats, setLikeToCat, removeCat } = catsSlice.actions;
 export const catsSelector = (state: RootState) => state.cats;
 export default catsSlice.reducer;
