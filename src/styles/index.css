@@ -1,3 +1,27 @@
+body {
+  background-color: #8dbaea;
+}
+
 .card-height {
   height: 736px;
+}
+
+.container {
+  margin: 5% auto;
+}
+
+.card-color {
+  background-color: #F1F6F5;
+}
+
+.filter-buttons {
+  bottom: 10px;
+}
+
+.favorite-button-margin-bottom {
+  margin-bottom: 15px;
+}
+
+.card-title-margin-top {
+  margin-top: 8px;
 }
