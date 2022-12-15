@@ -3,10 +3,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './index';
 
 type CatItem = {
-  image: object;
+  image: {
+    height: number;
+    id: string;
+    url: string;
+    width: number;
+  };
+  catId: string,
   description: string;
   name: string;
-  type: string;
+  isLiked: boolean;
 };
 
 interface CatsState {
@@ -21,12 +27,18 @@ export const catsSlice = createSlice({
   name: 'cats',
   initialState,
   reducers: {
-    setCats: (state, { payload }: PayloadAction<object>) => {
+    getCats: (state, { payload }: PayloadAction<CatItem>) => {
       state.catsList.push(payload);
+    },
+    setLikeToCat: (state, { payload }: PayloadAction<string>) => { // payload = catId: string
+      const targetCat = state.catsList.find(({ catId }) => catId === payload);
+      if (targetCat) {
+        targetCat.isLiked = !targetCat.isLiked;
+      }
     },
   },
 });
 
-export const { setCats } = catsSlice.actions;
-export const catsSelector = (state: RootState) => state.cats; // ?????
+export const { getCats, setLikeToCat } = catsSlice.actions;
+export const catsSelector = (state: RootState) => state.cats;
 export default catsSlice.reducer;
