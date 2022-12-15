@@ -1,25 +1,29 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import { Container } from 'react-bootstrap';
 
-import { setCats, catsSelector } from '../redux/catsSlice';
+import { getCats } from '../redux/catsSlice';
+import CatsList from './CatsList';
 
-function Cats() {
+function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios.get('https://api.thecatapi.com/v1/breeds');
-      data.forEach((
+      data.slice(10, 30).forEach((
         {
           image,
           description,
           name,
-        }: { image: object; description: string; name: string },
+        }: { image: any; description: string; name: string },
       ) => {
         const isLiked: boolean = false;
-        dispatch(setCats({
+        const catId: string = image.id;
+        dispatch(getCats({
           image,
+          catId,
           description,
           name,
           isLiked,
@@ -30,17 +34,10 @@ function Cats() {
     getData();
   }, []);
 
-  const c = useSelector(catsSelector);
-  console.log(c);
-  return (<img src="https://cdn2.thecatapi.com/images/MTYzMzcxNg.gif" alt="cat" />);
-}
-
-function App() {
   return (
-    <>
-      <h1>CATS</h1>
-      <Cats />
-    </>
+    <Container>
+      <CatsList />
+    </Container>
   );
 }
 
