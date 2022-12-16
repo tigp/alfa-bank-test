@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import catsReducer from './catsSlice';
+import modalReducer from './modalSlice';
 
 const store = configureStore({
   reducer: {
     cats: catsReducer,
+    modal: modalReducer,
   },
 });
 

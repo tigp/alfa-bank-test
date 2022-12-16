@@ -19,10 +19,12 @@ type CatItem = {
 
 interface CatsState {
   catsList: CatItem[];
+  filterState: string,
 }
 
 const initialState: CatsState = {
   catsList: [],
+  filterState: 'all', // all -> favorites (Automata machine state)
 };
 
 export const catsSlice = createSlice({
@@ -42,9 +44,17 @@ export const catsSlice = createSlice({
       const filteredCats = state.catsList.filter(({ catId }) => catId !== payload);
       state.catsList = [...filteredCats];
     },
+    changeFilter: (state, { payload }: PayloadAction<string>) => {
+      state.filterState = payload;
+    },
   },
 });
 
-export const { getCats, setLikeToCat, removeCat } = catsSlice.actions;
+export const {
+  getCats,
+  setLikeToCat,
+  removeCat,
+  changeFilter,
+} = catsSlice.actions;
 export const catsSelector = (state: RootState) => state.cats;
 export default catsSlice.reducer;
