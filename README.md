@@ -1,5 +1,5 @@
 # Тестовое задание для Альфа-Банка.
-### [React приложение](http://localhost:3000/)
+### [React приложение](https://tigp.github.io/alfa-bank-test/)
 ### Использованное API: https://thecatapi.com/
 ### Использованные технологии:
 - TS
