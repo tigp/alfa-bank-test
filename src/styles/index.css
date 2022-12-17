@@ -25,3 +25,14 @@ body {
 .card-title-margin-top {
   margin-top: 8px;
 }
+
+@media (hover: none) {
+  .btn-outline-danger:hover {
+    color: #dc3545;
+    background-color: #E6F4F1;
+  }
+
+  .btn-danger:hover {
+    background-color: #dc3545;
+  }
+}
