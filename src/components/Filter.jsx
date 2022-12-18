@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { GiCat } from 'react-icons/gi';
+import { SiDatadog } from 'react-icons/si';
 import { BsCheckAll } from 'react-icons/bs';
 import { MdFavorite } from 'react-icons/md';
 
-import { changeFilter } from '../redux/catsSlice';
+import { changeFilter } from '../redux/dogsSlice';
 
 function Filter() {
   const dispatch = useDispatch();
@@ -16,19 +16,19 @@ function Filter() {
   return (
     <>
       <h1 className="text-center">
-        <GiCat />
+        <SiDatadog />
         Filters
       </h1>
       <div className="filter-buttons d-grid gap-2">
         <Button onClick={handleAll} size="lg" variant="primary">
           <BsCheckAll />
           {' '}
-          All cats
+          All dogs
         </Button>
         <Button onClick={handleFavorites} size="lg" variant="secondary" className="favorite-button-margin-bottom">
           <MdFavorite />
           {' '}
-          Favorite
+          Favorites
         </Button>
       </div>
     </>

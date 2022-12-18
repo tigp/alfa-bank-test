@@ -1,11 +1,13 @@
+/* eslint-disable camelcase */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import LoadingBar from 'react-top-loading-bar';
 
-import { getCats } from '../redux/catsSlice';
-import CatsList from './CatsList';
+import { getDogs } from '../redux/dogsSlice';
+import CatsList from './DogsList';
 import Filter from './Filter';
 import RemoveModal from './modal/RemoveModal';
 
@@ -16,22 +18,26 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get('https://api.thecatapi.com/v1/breeds');
+        const { data } = await axios.get('https://api.thedogapi.com/v1/breeds');
         data.slice(0, 30).forEach((
           {
             image,
-            description,
+            temperament,
             name,
-          }: { image: any; description: string; name: string },
+            height,
+            life_span,
+          }: { image: any; temperament: string; name: string, height: any, life_span: string},
         ) => {
           const isLiked: boolean = false;
-          const catId: string = image.id;
-          dispatch(getCats({
+          const dogId: string = image.id;
+          dispatch(getDogs({
             image,
-            catId,
-            description,
+            dogId,
+            temperament,
             name,
             isLiked,
+            height,
+            lifeSpan: life_span,
           }));
         });
         setProgress(100);

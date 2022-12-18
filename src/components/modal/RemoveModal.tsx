@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { modalSelector, closeModal } from '../../redux/modalSlice';
-import { removeCat } from '../../redux/catsSlice';
+import { removeDog } from '../../redux/dogsSlice';
 
 function RemoveModal() {
   const { isShow, targetId } = useSelector(modalSelector);
@@ -11,14 +11,14 @@ function RemoveModal() {
 
   const handleClose = () => dispatch(closeModal());
   const handleRemove = (id: string) => {
-    dispatch(removeCat(id));
+    dispatch(removeDog(id));
     handleClose();
   };
 
   return (
     <Modal show={isShow} onHide={handleClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Remove cat?</Modal.Title>
+        <Modal.Title>Remove dog?</Modal.Title>
       </Modal.Header>
       <Modal.Footer>
         <Button onClick={() => handleRemove(targetId)} variant="outline-danger">

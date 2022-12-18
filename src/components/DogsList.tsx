@@ -8,42 +8,47 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineHeart, AiOutlineDelete } from 'react-icons/ai';
 
-import { catsSelector, setLikeToCat } from '../redux/catsSlice';
+import { dogsSelector, setLikeToDog } from '../redux/dogsSlice';
 import { openModal } from '../redux/modalSlice';
 
 const cardRender = () => {
-  const { catsList, filterState } = useSelector(catsSelector);
+  const { dogsList, filterState } = useSelector(dogsSelector);
   const dispatch = useDispatch();
   const handleOpen = (id: string) => dispatch(openModal(id));
+  console.log(dogsList);
 
   if (filterState === 'favorites') {
     return (
       <Row xs={1} md={2} className="g-4">
-        {catsList.length > 0
-        && catsList.map((
+        {dogsList.length > 0
+        && dogsList.map((
           {
             image,
-            catId,
-            description,
+            dogId,
+            temperament,
             name,
             isLiked,
+            height: { metric },
+            lifeSpan,
           },
         ): null | any => (
           isLiked
             ? (
-              <Col key={catId}>
+              <Col key={dogId}>
                 <Card className="card-height card-color">
                   <Card.Img variant="bottom" src={image.url} alt={`cute ${name} cat`} width="150" height="400" />
                   <Card.Body>
-                    <Button onClick={() => dispatch(setLikeToCat(catId))} variant={!isLiked ? 'outline-danger' : 'danger'}>
+                    <Button onClick={() => dispatch(setLikeToDog(dogId))} variant={!isLiked ? 'outline-danger' : 'danger'}>
                       <AiOutlineHeart />
                     </Button>
                     {' '}
-                    <Button onClick={() => handleOpen(catId)} variant="outline-secondary">
+                    <Button onClick={() => handleOpen(dogId)} variant="outline-secondary">
                       <AiOutlineDelete />
                     </Button>
                     <Card.Title className="card-title-margin-top">{name}</Card.Title>
-                    <Card.Text>{description}</Card.Text>
+                    <Card.Text>{`Temperament: ${temperament}`}</Card.Text>
+                    <Card.Text>{`${metric} cm at the withers`}</Card.Text>
+                    <Card.Text>{`Life span: ${lifeSpan}`}</Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
@@ -56,29 +61,33 @@ const cardRender = () => {
 
   return (
     <Row xs={1} md={2} className="g-4">
-      {catsList.length > 0
-      && catsList.map((
+      {dogsList.length > 0
+      && dogsList.map((
         {
           image,
-          catId,
-          description,
+          dogId,
+          temperament,
           name,
           isLiked,
+          height: { metric },
+          lifeSpan,
         },
       ): null | any => (
-        <Col key={catId}>
+        <Col key={dogId}>
           <Card className="card-height card-color">
             <Card.Img variant="bottom" src={image.url} alt={`cute ${name} cat`} width="150" height="400" />
             <Card.Body>
-              <Button onClick={() => dispatch(setLikeToCat(catId))} variant={!isLiked ? 'outline-danger' : 'danger'}>
+              <Button onClick={() => dispatch(setLikeToDog(dogId))} variant={!isLiked ? 'outline-danger' : 'danger'}>
                 <AiOutlineHeart />
               </Button>
               {' '}
-              <Button onClick={() => handleOpen(catId)} variant="outline-secondary">
+              <Button onClick={() => handleOpen(dogId)} variant="outline-secondary">
                 <AiOutlineDelete />
               </Button>
               <Card.Title className="card-title-margin-top">{name}</Card.Title>
-              <Card.Text>{description}</Card.Text>
+              <Card.Text>{`Temperament: ${temperament}`}</Card.Text>
+              <Card.Text>{`${metric} cm at the withers`}</Card.Text>
+              <Card.Text>{`Life span: ${lifeSpan}`}</Card.Text>
             </Card.Body>
           </Card>
         </Col>
