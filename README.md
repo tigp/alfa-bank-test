@@ -1,6 +1,6 @@
 # Тестовое задание для Альфа-Банка.
 ### [React приложение](https://tigp.github.io/alfa-bank-test/)
-### Использованное API: https://thecatapi.com/
+### Использованное API: https://thedogapi.com/
 ### Использованные технологии:
 - TS
 - React (Hooks API)
